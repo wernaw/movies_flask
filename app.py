@@ -2,10 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from insert_movie import insert_movie
 from list_movie import list_movies
 from remove_movie import remove_movie
+import os
 
 
 app = Flask(__name__)
-app.secret_key = "secretkey"
+app.secret_key = os.urandom(24)
 
 @app.route('/')
 def home():
