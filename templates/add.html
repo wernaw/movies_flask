@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <title>My favourite movies to watch</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&family=Pacifico&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My favourite movies to watch</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+                <div class="column">
+                    <a href='/' class="btn-text"><i class="fa-solid fa-person-walking-arrow-loop-left"></i> Back to list of movies</a>
+                    <h3><i class="fa-solid fa-file-circle-plus"></i> Add movie</h3>
+                    <form method="POST" action="/addMovie">
+                    Title: <input type="text" name="title"><br>
+                    Year: <input type="text"  name="year"><br>
+                    Actors: <input type="text"  name="actors"><br>
+                    <button type="submit" class="primary"><i class="fa-solid fa-circle-plus"></i> Add movie</button>
+                    </form>
+
+                      <script>
+                        function showToast(message, category) {
+                            const toast = document.createElement('div');
+                            toast.classList.add('toast', category, 'show');
+                            toast.textContent = message;
+                            document.body.appendChild(toast);
+
+                            setTimeout(() => {
+                                toast.classList.remove('show');
+                                toast.classList.add('hide');
+                            }, 2500);
+
+                            setTimeout(() => toast.remove(), 3000);
+                        }
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                            {% for category, message in messages %}
+                                showToast("{{ message }}", "{{ category }}");
+                            {% endfor %}
+                          {% endif %}
+                        {% endwith %}
+                      </script>
+
+                </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&#169; My Movie Database. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
