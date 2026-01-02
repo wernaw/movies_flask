@@ -17,10 +17,6 @@ instance/
 .env
 .env.local
 
-# Database files (if using SQLite or similar)
-*.sqlite3
-*.db
-
 # Logs
 *.log
 
